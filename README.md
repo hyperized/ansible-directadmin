@@ -46,6 +46,7 @@ Example Playbook
 ----------------
 
     - hosts: servers
+      become: yes
       roles:
          - { role: hyperized.directadmin }
 
