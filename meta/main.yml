@@ -1,0 +1,23 @@
+galaxy_info:
+  author: Gerben Geijteman
+  description: Deploy DirectAdmin with Ansible
+  company: Hyperized Hosting
+  license: MIT
+  min_ansible_version: 2.1
+  platforms:
+  - name: EL
+    versions:
+    - all
+  - name: Fedora
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - jessie
+    - squeeze
+    - wheezy
+  galaxy_tags:
+    - system
+    - web
+    - directadmin
+dependencies: []

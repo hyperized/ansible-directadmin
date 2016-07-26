@@ -1,0 +1,30 @@
+---
+- name: Install dependencies for Debian 6 Squeeze
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: "{{ directadmin_cache_timeout }}"
+    state: present
+  with_items:
+    - "{{ directadmin_debian6_packages }}"
+  when: "ansible_distribution == 'Debian' and ansible_distribution_release == 'squeeze'"
+
+- name: Install dependencies for Debian 7 Wheezy
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: "{{ directadmin_cache_timeout }}"
+    state: present
+  with_items:
+    - "{{ directadmin_debian7_packages }}"
+  when: "ansible_distribution == 'Debian' and ansible_distribution_release == 'wheezy'"
+
+- name: Install dependencies for Debian 8 Jessie
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: "{{ directadmin_cache_timeout }}"
+    state: present
+  with_items:
+    - "{{ directadmin_debian8_packages }}"
+  when: "ansible_distribution == 'Debian' and ansible_distribution_release == 'jessie'"

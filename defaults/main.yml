@@ -1,0 +1,152 @@
+---
+# Directadmin automated setup - http://help.directadmin.com/item.php?id=578
+directadmin_install: True
+directadmin_setup_url: http://www.directadmin.com/setup.sh
+directadmin_setup_path: /root
+# directadmin_client_id:
+# directadmin_license_id:
+# directadmin_hostname: # Optional, will be obtained from server
+# directadmin_ip_address: # Optional, will be obtained from server
+directadmin_ethernet_device: eth0
+directadmin_custombuild_options_conf: # like http://yourdomain.com/options.conf
+directadmin_custombuild_version: 2.0
+directadmin_custombuild_path: /usr/local/directadmin/custombuild
+directadmin_cache_timeout: 3600
+
+# Packages - http://help.directadmin.com/item.php?id=354
+directadmin_debian6_packages:
+  - gcc
+  - g++
+  - make
+  - flex
+  - bison
+  - openssl
+  - libssl-dev
+  - perl
+  - perl-base
+  - perl-modules
+  - libperl-dev
+  - libaio1
+  - libaio-dev
+  - zlib1g
+  - zlib1g-dev
+  - libcap-dev
+  - bzip2
+  - automake
+  - autoconf
+  - libtool
+  - cmake
+  - pkg-config
+  - python
+  - libreadline-dev
+  - libdb4.8-dev
+  - libsasl2-dev
+  - patch
+
+directadmin_debian7_packages:
+  - gcc
+  - g++
+  - make
+  - flex
+  - bison
+  - openssl
+  - libssl-dev
+  - perl
+  - perl-base
+  - perl-modules
+  - libperl-dev
+  - libaio1
+  - libaio-dev
+  - zlib1g
+  - zlib1g-dev
+  - libcap-dev
+  - bzip2
+  - automake
+  - autoconf
+  - libtool
+  - cmake
+  - pkg-config
+  - python
+  - libdb-dev
+  - libsasl2-dev
+  - libncurses5-dev
+  - patch
+
+directadmin_debian8_packages:
+  - gcc
+  - g++
+  - make
+  - flex
+  - bison
+  - openssl
+  - libssl-dev
+  - perl
+  - perl-base
+  - perl-modules
+  - libperl-dev
+  - libaio1
+  - libaio-dev
+  - zlib1g
+  - zlib1g-dev
+  - libcap-dev
+  - bzip2
+  - automake
+  - autoconf
+  - libtool
+  - cmake
+  - pkg-config
+  - python
+  - libdb-dev
+  - libsasl2-dev
+  - libncurses5-dev
+  - libsystemd-dev
+  - bind9
+  - quota
+  - libsystemd-daemon0
+  - patch
+  - libjemalloc-dev
+
+directadmin_rhel_generic_packages:
+  - gcc
+  - gcc-c++
+  - flex
+  - bison
+  - make
+  - bind
+  - bind-libs
+  - bind-utils
+  - openssl
+  - openssl-devel
+  - perl
+  - quota
+  - libaio
+  - libcom_err-devel
+  - libcurl-devel
+  - gd
+  - zlib-devel
+  - zip
+  - unzip
+  - libcap-devel
+  - cronie
+  - bzip2
+  - cyrus-sasl-devel
+  - perl-ExtUtils-Embed
+  - autoconf
+  - automake
+  - libtool
+  - which
+  - patch
+  - mailx
+  - bzip2-devel
+  - lsof
+
+directadmin_rhel_packages:
+  - db4-devel
+
+directadmin_centos7_packages:
+  - psmisc
+  - net-tools
+  - systemd-devel
+  - libdb-devel
+  - perl-DBI
+  - xfsprogs

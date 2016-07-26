@@ -1,0 +1,59 @@
+---
+- name: obtain setup.sh script
+  get_url:
+    url: "{{ directadmin_setup_url }}"
+    dest: "{{ directadmin_setup_path }}/"
+
+- name: ensure proper permissions on setup.sh
+  file:
+    path: "{{ directadmin_setup_path }}/setup.sh"
+    mode: 0755
+
+- name: ensure custombuild version is set
+  template:
+    src: .custombuild.j2
+    dest: "{{ directadmin_setup_path }}/.custombuild"
+
+- name: check if DA is already running on host
+  uri:
+    url: http://localhost:2222
+    return_content: no
+  register: da_present
+
+- name: toggle whether to install DA or not
+  set_fact:
+    directadmin_install: False
+  when: da_present.status == 200
+
+- block:
+    - name: ensure directadmin path if remote options file is used
+      file:
+        path: "{{ directadmin_custombuild_path }}"
+        recurse: yes
+        state: directory
+
+    - name: try remote custombuild options file
+      get_url:
+        url: "{{ directadmin_custombuild_options_conf }}"
+        dest: "{{ directadmin_custombuild_path }}/options.conf"
+
+  when: directadmin_custombuild_options_conf is defined and directadmin_custombuild_options_conf is not none
+
+# https://youtu.be/b00j4WblrzA?t=238
+
+- debug:
+    msg: "This is a good time for a coffee break - https://xkcd.com/303/"
+  when: directadmin_install
+
+- name: run setup
+  command: "{{ directadmin_setup_path }}/setup.sh {{ directadmin_client_id }} {{ directadmin_license_id }} {{ directadmin_hostname }} {{ directadmin_ethernet_device }} {{ directadmin_ip_address | default( hostvars[inventory_hostname]['ansible_' + directadmin_ethernet_device]['ipv4']['address'] ) }}"
+  register: setup_output
+  when: directadmin_install
+
+- debug:
+    var: setup_output.stdout_lines
+  when: directadmin_install
+
+- debug:
+    msg: "Directadmin is already installed and running, skipping.."
+  when: not directadmin_install

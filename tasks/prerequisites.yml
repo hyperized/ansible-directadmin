@@ -1,0 +1,18 @@
+---
+# Ensure all variables are present to start with:
+- name: verify all required variables are set
+  fail:
+    msg: "Variable: '{{ item }}' is not defined!"
+  when: "{{ item }} is undefined or {{ item }} is none"
+  with_items:
+    - directadmin_client_id
+    - directadmin_license_id
+    - directadmin_hostname
+
+# Ensure prerequisites are installed for supported OS
+- include: prerequisites-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- include: prerequisites-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
