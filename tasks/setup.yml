@@ -26,16 +26,16 @@
   when: da_present.status == 200
 
 - block:
-    - name: ensure directadmin path if remote options file is used
-      file:
-        path: "{{ directadmin_custombuild_path }}"
-        recurse: yes
-        state: directory
+  - name: ensure directadmin path if remote options file is used
+    file:
+      path: "{{ directadmin_custombuild_path }}"
+      recurse: yes
+      state: directory
 
-    - name: try remote custombuild options file
-      get_url:
-        url: "{{ directadmin_custombuild_options_conf }}"
-        dest: "{{ directadmin_custombuild_path }}/options.conf"
+  - name: try remote custombuild options file
+    get_url:
+      url: "{{ directadmin_custombuild_options_conf }}"
+      dest: "{{ directadmin_custombuild_path }}/options.conf"
 
   when: directadmin_custombuild_options_conf is defined and directadmin_custombuild_options_conf is not none
 

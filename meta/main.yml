@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Gerben Geijteman
   description: Deploy DirectAdmin with Ansible
@@ -17,7 +18,7 @@ galaxy_info:
     - squeeze
     - wheezy
   galaxy_tags:
-    - system
-    - web
-    - directadmin
+  - system
+  - web
+  - directadmin
 dependencies: []
