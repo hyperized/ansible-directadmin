@@ -19,7 +19,7 @@
 - name: install CentOS 7 specific requirements
   yum:
     name: "{{ item }}"
-      update_cache: yes
+    update_cache: yes
     state: present
   with_items:
   - "{{ directadmin_centos7_packages }}"
