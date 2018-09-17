@@ -4,7 +4,7 @@ galaxy_info:
   description: Deploy DirectAdmin with Ansible
   company: Hyperized Hosting
   license: MIT
-  min_ansible_version: 2.1
+  min_ansible_version: 2.5
   platforms:
   - name: EL
     versions:
@@ -17,6 +17,7 @@ galaxy_info:
     - jessie
     - squeeze
     - wheezy
+    - stretch
   galaxy_tags:
   - system
   - web

@@ -1,0 +1,5 @@
+---
+- name: restart directadmin
+  service:
+    name: directadmin
+    state: restarted

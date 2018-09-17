@@ -12,8 +12,8 @@ addons:
     - python-pip
 
 install:
-# Install ansible
-- pip install ansible
+# Install requirements
+- pip install -r requirements.txt -U
 
 # Check ansible version
 - ansible --version
@@ -26,4 +26,5 @@ script:
 - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
 notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  webhooks:
+    - https://galaxy.ansible.com/api/v1/notifications/

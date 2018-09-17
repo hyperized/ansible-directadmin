@@ -1,0 +1,23 @@
+---
+- name: execute LetsEncrypt setup script
+  command: letsencrypt.sh request_single {{ directadmin_hostname }} 4096
+  args:
+    chdir: /usr/local/directadmin/scripts/
+  register: directadmin_letsencrypt_output
+
+- debug:
+    var: directadmin_letsencrypt_output.stdout_lines
+
+- name: enable SSL with LetsEncrypt for DirectAdmin
+  lineinfile:
+    path: directadmin_config_path
+  regexp: item.regexp
+  line: item.line
+  with_items:
+  - { regexp: '^SSL\=0' , line: 'SSL=1' }
+  - { regexp: '^carootcert=' , line: 'carootcert=/usr/local/directadmin/conf/carootcert.pem' }
+  - { regexp: '^force_hostname=' , line: "force_hostname={{ directadmin_hostname }}" }
+  - { regexp: '^ssl_redirect_host=' , line: "ssl_redirect_host={{ directadmin_hostname }}" }
+  - { regexp: '^letsencrypt=' , line: "letsencrypt=1" }
+  notify:
+  - restart directadmin

@@ -5,7 +5,7 @@
     update_cache: yes
     state: present
   with_items:
-  - "{{ directadmin_rhel_packages_generic }}"
+  - "{{ directadmin_rhel_generic_packages }}"
 
 - name: install everywhere but on CentOS7
   yum:
@@ -14,7 +14,9 @@
     state: present
   with_items:
   - "{{ directadmin_rhel_packages }}"
-  when: ansible_distribution not 'CentOS' and ansible_distribution_version|version_compare('ne', 7)
+  when:
+  - ansible_distribution not 'CentOS'
+  - ansible_distribution_version is version(7, 'ne')
 
 - name: install CentOS 7 specific requirements
   yum:
@@ -23,4 +25,6 @@
     state: present
   with_items:
   - "{{ directadmin_centos7_packages }}"
-  when: ansible_distribution == 'CentOS' and ansible_distribution_version|version_compare('=', 7)
+  when:
+  - ansible_distribution is 'CentOS'
+  - ansible_distribution_version is version(7, '=')

@@ -10,8 +10,11 @@ directadmin_setup_path: /root
 directadmin_ethernet_device: eth0
 directadmin_custombuild_options_conf: # like http://yourdomain.com/options.conf
 directadmin_custombuild_version: 2.0
-directadmin_custombuild_path: /usr/local/directadmin/custombuild
+directadmin_path: /usr/local/directadmin/
+directadmin_config_path: "{{ directadmin_path }}conf/directadmin.conf"
+directadmin_custombuild_path: "{{ directadmin_path }}custombuild"
 directadmin_cache_timeout: 3600
+directadmin_letsencrypt: True
 
 # Packages - http://help.directadmin.com/item.php?id=354
 directadmin_debian6_packages:
@@ -105,6 +108,49 @@ directadmin_debian8_packages:
 - libsystemd-daemon0
 - patch
 - libjemalloc-dev
+
+directadmin_debian9_packages:
+- autoconf
+- automake
+- bind9
+- bison
+- bsd-mailx
+- bzip2
+- cmake
+- cron
+- dnsutils
+- flex
+- g++
+- gcc
+- libaio-dev
+- libaio1
+- libc6-dev
+- libcap-dev
+- libcrypt-openssl-rsa-perl
+- libdb-dev
+- libexpat1-dev
+- libjemalloc-dev
+- libncurses5-dev
+- libnuma-dev
+- libnuma1
+- libperl-dev
+- libsasl2-dev
+- libssl-dev
+- libsystemd-dev
+- libtool
+- logrotate
+- make
+- openssl
+- patch
+- perl
+- perl-base
+- perl-modules
+- pkg-config
+- python
+- quota
+- rsyslog
+- zlib1g
+- zlib1g-dev
 
 directadmin_rhel_generic_packages:
 - gcc

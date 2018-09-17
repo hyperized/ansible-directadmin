@@ -14,16 +14,15 @@
     src: .custombuild.j2
     dest: "{{ directadmin_setup_path }}/.custombuild"
 
-- name: check if DA is already running on host
-  uri:
-    url: http://localhost:2222
-    return_content: no
-  register: da_present
+- name: check if DA is already present on host
+  stat:
+    path: "{{ directadmin_config_path }}"
+  register: directadmin_present
 
 - name: toggle whether to install DA or not
   set_fact:
     directadmin_install: False
-  when: da_present.status == 200
+  when: directadmin_present.stat.exists == True
 
 - block:
   - name: ensure directadmin path if remote options file is used
@@ -53,6 +52,10 @@
 - debug:
     var: setup_output.stdout_lines
   when: directadmin_install
+
+- name: ensure Letsencrypt
+  include: letsencrypt.yml
+  when: directadmin_letsencrypt
 
 - debug:
     msg: "Directadmin is already installed and running, skipping.."
